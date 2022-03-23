@@ -1,9 +1,10 @@
 import requests
 
 
-def weather(place):
-    url = f'https://wttr.in/{place}?nTqm&lang=ru'
-    response = requests.get(url)
+def get_weather(place):
+    payload = {'n': '', 'T': '', 'q': '', 'm': '', 'lang': 'ru'}
+    url = f'https://wttr.in/{place}'
+    response = requests.get(url, params=payload)
     response.raise_for_status()
     return response.text
 
@@ -11,4 +12,4 @@ def weather(place):
 if __name__ == '__main__':
     places = ['London', 'SVO', 'Череповец']
     for place in places:
-        print(weather(place))
+        print(get_weather(place))
